@@ -25,7 +25,8 @@ This Project requies Installing expo in the local machine.
 - Type `cd ../Backend/`. Install the expo by `npm install && npm run dev`.This would initialize the backend service. 
 - Launch the IOS or Android Simulator for testing the service. 
 
-- You need to set the development frontend to point to your localhost's ipAddress. Do this by opening `e-voting/src/ipAddress.js`.
+- You need to set the development frontend to point to your localhost's ipAddress. 
+Do this by opening `e-voting/src/ipAddress.js`.
 input your own ipAddress in your local machine. 
 
 How to check your ipAddress: 
