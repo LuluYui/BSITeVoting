@@ -40,7 +40,7 @@ export default class Login extends Component {
       })
     };
 
-    fetch(`http://${ipAddress}:3000/qr_code`, options)
+    fetch(`http://${ipAddress.ipAddress}/qr_code`, options)
       .then((response) => response.json())
       .then((data) => {
          if (data.length > 0){
@@ -60,12 +60,7 @@ export default class Login extends Component {
     const params = navigation.state.params || {};
 
     return {
-      headerLeft: () => (
-        <Icon name="qrcode-scan" 
-        size={30} 
-        onPress={() => navigation.navigate('Dashboard')}
-        style={{color:'white', marginHorizontal: 13}}/>
-      ),
+      
       /* the rest of this config is unchanged */
     };
   };
