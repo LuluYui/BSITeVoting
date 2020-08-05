@@ -10,6 +10,7 @@ import {
 import { TouchableHighlight, TouchableOpacity } from "react-native-gesture-handler";
 import Button from '../components/Button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import ipAddress from "../ipAddress";
 
 export default class Login extends Component {
 
@@ -39,7 +40,7 @@ export default class Login extends Component {
       })
     };
 
-    fetch(`http://192.168.1.82:3000/qr_code`, options)
+    fetch(`http://${ipAddress}:3000/qr_code`, options)
       .then((response) => response.json())
       .then((data) => {
          if (data.length > 0){
@@ -71,6 +72,8 @@ export default class Login extends Component {
 
   render() {
     return (
+
+      
       <View style={styles.container}>
         <ImageBackground
           style={styles.image}

@@ -4,7 +4,7 @@
   "description": "backend system for BSITeVoting System",
   "main": "server.js",
   "scripts": {
-    "dev": "npx nodemon server.js -w server"
+    "dev": "npx nodemon server.js -w ./"
   },
   "author": "",
   "license": "ISC",
