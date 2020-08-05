@@ -10,6 +10,8 @@ import {
 import { TouchableHighlight, TouchableOpacity } from "react-native-gesture-handler";
 import Button from '../components/Button';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
 import ipAddress from "../ipAddress";
 
 export default class Login extends Component {
@@ -40,7 +42,7 @@ export default class Login extends Component {
       })
     };
 
-    fetch(`http://${ipAddress}:3000/qr_code`, options)
+    fetch(`http://${ipAddress.ipAddress}:3000/qr_code`, options)
       .then((response) => response.json())
       .then((data) => {
          if (data.length > 0){
@@ -56,24 +58,9 @@ export default class Login extends Component {
       );
   };
 
-  static navigationOptions = ({ navigation }) => {
-    const params = navigation.state.params || {};
-
-    return {
-      headerLeft: () => (
-        <Icon name="qrcode-scan" 
-        size={30} 
-        onPress={() => navigation.navigate('Dashboard')}
-        style={{color:'white', marginHorizontal: 13}}/>
-      ),
-      /* the rest of this config is unchanged */
-    };
-  };
-
   render() {
     return (
 
-      
       <View style={styles.container}>
         <ImageBackground
           style={styles.image}
@@ -85,13 +72,13 @@ export default class Login extends Component {
 
         <View style={styles.card}>
           <Text style={styles.text}>USER ID</Text>
-          <TextInput style={styles.textInput} autoCapitalize = 'none' onChangeText={(text) => this.setState({ qr_code: text })}></TextInput>
+          <TextInput style={styles.textInput} autoCapitalize = 'none' 
+          onChangeText={(text) => this.setState({ qr_code: text })}></TextInput>
 
           <Button onPress={() => this.getQRCode()} title="Login"></Button>
         </View>
-        
-
       </View>
+
     );
   }
 }

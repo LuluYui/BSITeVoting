@@ -1,6 +1,6 @@
 'use strict';
-
-import React, { Component } from 'react';
+import React, { Component, setState } from 'react';
+import { Permissions, Camera } from 'expo';
 
 import {
   AppRegistry,
@@ -14,10 +14,25 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 import { RNCamera } from 'react-native-camera';
 
 class ScanScreen extends Component {
-  onSuccess = e => {
-    Linking.openURL(e.data).catch(err =>
-      console.error('An error occured', err)
-    );
+
+  state = {
+    status: null,
+  };
+
+  componentDidMount() {
+    
+  }
+
+  permissionFlow = async () => {
+    const { status } = await Permissions.askAsync(Permissoins.Camera);
+
+    this.setState({status});
+
+    if (status !== 'granted') {
+     
+      return;
+    }
+
   };
 
   render() {

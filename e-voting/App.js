@@ -9,14 +9,22 @@ import {
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Login, Dashboard } from "./src/screens";
+import { Login, Dashboard, ScanScreen } from "./src/screens";
 import "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+
+const pressQRCode = ({navigation}) => {
+  navigation.navigate("ScanScreen"); 
+
+};
+
 export default function App() {
+
   const Stack = createStackNavigator();
 
   return (
+    
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="Login"
@@ -43,11 +51,12 @@ export default function App() {
           options={{
             title: "Voting System",
             headerRight: () => (
-              <Icon name="qrcode-scan" size={30} style={{color:'white', marginRight: 13}}/>
-
-            ),
+              <Icon name="qrcode-scan" size={30}
+              onPress={(navigation) => pressQRCode({navigation})} style={{color:'white', marginRight: 13}}/>
+            )
           }}
         />
+
       </Stack.Navigator>
       <View style={styles.disclaimer}>
         <Text style={styles.disclaimerText}>
@@ -56,6 +65,7 @@ export default function App() {
       </View>
     </NavigationContainer>
   );
+
 }
 
 const styles = StyleSheet.create({
