@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, setState } from "react";
 import {
   View,
   StyleSheet,
@@ -9,8 +9,65 @@ import {
 } from "react-native";
 import { TouchableHighlight, TouchableOpacity } from "react-native-gesture-handler";
 import Button from '../components/Button';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class Login extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: {},
+      qr_code: '',
+    };
+  }
+
+  ComponentDidMount() {
+    this.getQRCode();
+  }
+
+  getQRCode = () => {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        qr_code: this.state.qr_code,
+      })
+    };
+
+    fetch(`http://192.168.1.82:3000/qr_code`, options)
+      .then((response) => response.json())
+      .then((data) => {
+         if (data.length > 0){
+          this.props.navigation.navigate('Dashboard');
+         }
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      );
+  };
+
+  static navigationOptions = ({ navigation }) => {
+    const params = navigation.state.params || {};
+
+    return {
+      headerLeft: () => (
+        <Icon name="qrcode-scan" 
+        size={30} 
+        onPress={() => navigation.navigate('Dashboard')}
+        style={{color:'white', marginHorizontal: 13}}/>
+      ),
+      /* the rest of this config is unchanged */
+    };
+  };
 
   render() {
     return (
@@ -25,9 +82,9 @@ export default class Login extends Component {
 
         <View style={styles.card}>
           <Text style={styles.text}>USER ID</Text>
-          <TextInput style={styles.textInput}></TextInput>
+          <TextInput style={styles.textInput} autoCapitalize = 'none' onChangeText={(text) => this.setState({ qr_code: text })}></TextInput>
 
-          <Button onPress={() => this.props.navigation.navigate("Dashboard")} title="Login"></Button>
+          <Button onPress={() => this.getQRCode()} title="Login"></Button>
         </View>
         
 
@@ -45,6 +102,7 @@ const styles = StyleSheet.create({
   },
   text: {
     alignSelf: 'flex-start',
+    marginLeft: 20,
   },
   card: {
     shadowOpacity: 0.3,
@@ -54,8 +112,7 @@ const styles = StyleSheet.create({
     height: 200,
     borderWidth: 2,
     borderColor: "#dddddd",
-    justifyContent: "center",
-    paddingLeft: 20,
+    justifyContent: "center"
   },
   titleText: {
     color: "white",
@@ -68,9 +125,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderWidth: 1,
     height: 29,
-    alignItems: "flex-start",
-    marginTop: 20,
-    width: "95%",
+    marginTop: 10,
+    alignSelf: 'center',
+    width: "90%",
   },
   appButtonText: {
     color: 'white',

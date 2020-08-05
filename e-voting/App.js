@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import {
   Button,
   StyleSheet,
@@ -43,7 +43,7 @@ export default function App() {
           options={{
             title: "Voting System",
             headerRight: () => (
-              <Icon name="qrcode-scan" onPress={()=> alert("QR Code")} size={30} style={{color:'white', marginRight: 13}}/>
+              <Icon name="qrcode-scan" size={30} style={{color:'white', marginRight: 13}}/>
 
             ),
           }}

@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     height: 30,
     backgroundColor: "black",
     opacity: 100,
-    width: "95%",
+    width: "90%",
     alignItems: "center",
     justifyContent: "center",
     alignSelf: 'center',
