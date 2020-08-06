@@ -53,7 +53,7 @@ export default function App() {
             title: "Voting System",
             headerRight: () => (
               <Icon name="qrcode-scan" size={30}
-              onPress={(navigation) => pressQRCode({navigation})} style={{color:'white', marginRight: 13}}/>
+             style={{color:'white', marginRight: 13}}/>
             )
           }}
         />
