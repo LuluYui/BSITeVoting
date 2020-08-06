@@ -1,0 +1,16 @@
+{
+    "expo": {
+     "name": "BSITeVoting",
+     "icon": "./src/assets/bsit_company_logo.png",
+     "version": "1.0.0",
+     "slug": "evoting",
+     "ios": {
+       "bundleIdentifier": "com.blueseait.BSITeVoting",
+       "buildNumber": "1.0.0"
+     },
+     "android": {
+       "package": "com.blueseait.BSITeVoting",
+       "versionCode": 1
+     }
+    }
+  }
