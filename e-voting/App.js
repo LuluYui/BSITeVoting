@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 const pressQRCode = ({navigation}) => {
+  
   navigation.navigate("ScanScreen"); 
 
 };

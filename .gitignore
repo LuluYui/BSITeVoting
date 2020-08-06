@@ -3,3 +3,6 @@
 
 # Visual Studio Code local History can be ignored
 .history/
+
+#generated files by bob
+lib/
