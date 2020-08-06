@@ -42,7 +42,7 @@ export default class Login extends Component {
       })
     };
 
-    fetch(`http://${ipAddress.ipAddress}:3000/qr_code`, options)
+    fetch(`http://${ipAddress.ipAddress}/qr_code`, options)
       .then((response) => response.json())
       .then((data) => {
          if (data.length > 0){
